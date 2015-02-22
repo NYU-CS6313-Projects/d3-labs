@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+		.red {
+			background: red;
+			color: blue;
+		}
+		.blue {
+			background: blue;
+			color: red;
+		}
+		.sameLine {
+			float: left;
+		}
+		.section  {
+			display: inline-block;
+		}
+		</style>
+
+		<script type="text/javascript" src="jquery.min.js"></script>
+
+		<script type="text/javascript">
+		console.log("Hello World");
+
+		function flip() {
+			var section = $("#hide");
+			if( section.is(":visible") ) {
+				section.hide();
+			}else {
+				section.show();
+			}
+		}
+
+		function input() {
+			var textarea = $("#text1").val();
+			var check = $("#check1");
+
+			alert("Textarea: " + textarea + "\nCheckbox: " + check.is(":checked"));
+		}
+
+		</script>
+	</head>
+<body>
+
+	<div>
+		<div class="section">
+			<input type="submit" name="sub1" value="Hide/Show" onclick="javascript:flip();" />
+			<div id="hide">
+				<div class="red sameLine">Red Section</div>	
+				<div class="blue sameLine">Blue Section</div>	
+			</div>
+		</div>
+
+		<div class="red">Red Section</div>	
+		<div class="blue">Blue Section</div>	
+
+		<div class="section">
+			<form onsubmit="javascript:input();return false">
+				<input type="text" id="text1" name="textinput" />
+				<input type="checkbox" id="check1" name="check" />
+				<input type="submit" />
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>
