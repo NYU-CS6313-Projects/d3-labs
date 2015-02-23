@@ -7,25 +7,27 @@ This repo contains example code from the d3 lab videos
 	- Chapter 3 covers similar content to the first lab. You will probably find it useful for more advanced things
 	- Chapter 4 covers settings up your environment. Useful, especially if you're on windows. If you're on Linux or OS X, the videos will give better advice
 	- Chapters 5, 6 are covered by Lab 3. Please read them BEFORE watching the video
-	- Chapter 7, 8 are covered by Lab 4.
-	- Chapter 9 is not convered, and is skippable
+	- Chapters 7, 8 are covered by Lab 4.
+	- Chapter 9 is not covered, and is skippable
 	- Chapter 10 covers interactive visualisation. The basics will be covered in Lab 4 
 * [Mozilla HTML Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 * [Mozilla CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
 * [Mozilla JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
 
+##Directories
 ###video1
 Video 1 covered using Git.
 The example repository is found here
+
+* [Git Branching](http://nvie.com/posts/a-successful-git-branching-model/)
+    - Covers the concept of branching for collaboration. Great for larger projects, but probably more than you need for this course. Just Remember: Branch, make changes, then merge changes into master. This alleviates some headaches.
+* Visual Git Applications
+    - [Github Desktop Client](https://windows.github.com/) or for [Mac](https://mac.github.com/]
+    - [Sourcetree](https://www.atlassian.com/software/sourcetree)
+* [Pro Git](http://git-scm.com/book/en/v2), the best book on Git. Completely Free
 
 ###video2
 HTML and CSS. Sample code here
 
 ###video3
 Javascript and Jquery
-
-###video4
-D3.JS; the basics
-
-###video5
-More advanced D3.js
