@@ -4,12 +4,12 @@ This repo contains example code from the d3 lab videos
 
 ##Important Links
 * [Scott Murray's Book on D3](http://chimera.labs.oreilly.com/books/1230000000345/index.html)
-	- Chapter 3 covers similar content to the first lab. You will probably find it useful for more advanced things
-	- Chapter 4 covers settings up your environment. Useful, especially if you're on windows. If you're on Linux or OS X, the videos will give better advice
-	- Chapters 5, 6 are covered by Lab 3. Please read them BEFORE watching the video
-	- Chapters 7, 8 are covered by Lab 4.
+	- Chapter 3 covers similar content to the second video. You will probably find it useful for more advanced things
+	- Chapter 4 covers settings up your environment. Useful, especially if you're on windows. 
+	- Chapters 5, 6 are covered by Video 4.
+	- Chapters 7, 8 are covered by Video 5. 
 	- Chapter 9 is not covered, and is skippable
-	- Chapter 10 covers interactive visualisation. The basics will be covered in Lab 4 
+	- Chapter 10 covers interactive visualisation. The basics will be covered in Video 5 
 * [Mozilla HTML Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 * [Mozilla CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
 * [Mozilla JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
