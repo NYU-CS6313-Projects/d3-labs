@@ -17,7 +17,7 @@ This repo contains example code from the d3 lab videos
 ##Directories
 ###video1
 Video 1 covered using Git.
-The example repository is found here
+The example repository is found here, as well as some stuff on branching
 
 * [Git Branching](http://nvie.com/posts/a-successful-git-branching-model/)
     - Covers the concept of branching for collaboration. Great for larger projects, but probably more than you need for this course. Just Remember: Branch, make changes, then merge changes into master. This alleviates some headaches.
