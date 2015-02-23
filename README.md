@@ -22,12 +22,19 @@ The example repository is found here
 * [Git Branching](http://nvie.com/posts/a-successful-git-branching-model/)
     - Covers the concept of branching for collaboration. Great for larger projects, but probably more than you need for this course. Just Remember: Branch, make changes, then merge changes into master. This alleviates some headaches.
 * Visual Git Applications
-    - [Github Desktop Client](https://windows.github.com/) or for [Mac](https://mac.github.com/]
+    - [Github Desktop Client](https://windows.github.com/) or for [Mac](https://mac.github.com/)
     - [Sourcetree](https://www.atlassian.com/software/sourcetree)
 * [Pro Git](http://git-scm.com/book/en/v2), the best book on Git. Completely Free
 
 ###video2
 HTML and CSS. Sample code here
 
+* [Mozilla HTML Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+* [Mozilla CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
+
 ###video3
 Javascript and Jquery
+
+* [Mozilla JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
+* [jQuery](http://jquery.com/)
+    - [jQuery API](http://api.jquery.com/)
