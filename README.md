@@ -14,16 +14,18 @@ This repo contains example code from the d3 lab videos
 * [Mozilla CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
 * [Mozilla JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
 
-###lab1
+###video1
+Video 1 covered using Git.
+The example repository is found here
 
-Basic HTML and CSS
+###video2
+HTML and CSS. Sample code here
 
-###lab2
-
+###video3
 Javascript and Jquery
 
-###lab3
+###video4
 D3.JS; the basics
 
-###lab4
+###video5
 More advanced D3.js
