@@ -21,7 +21,6 @@
 		<script type="text/javascript" src="jquery.min.js"></script>
 
 		<script type="text/javascript">
-		console.log("Hello World");
 
 		function flip() {
 			var section = $("#hide");
@@ -42,8 +41,6 @@
 		</script>
 	</head>
 <body>
-
-	<div>
 		<div class="section">
 			<input type="submit" name="sub1" value="Hide/Show" onclick="javascript:flip();" />
 			<div id="hide">
@@ -53,7 +50,7 @@
 		</div>
 
 		<div class="red">Red Section</div>	
-		<div class="blue">Blue Section</div>	
+		<div class="blue" onclick="javascript:$(this).toggleClass('blue');">Blue Section</div>	
 
 		<div class="section">
 			<form onsubmit="javascript:input();return false">
@@ -62,7 +59,7 @@
 				<input type="submit" />
 			</form>
 		</div>
-	</div>
+
 
 </body>
 </html>

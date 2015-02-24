@@ -1,35 +1,63 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script type="text/javascript">
+		var example = "Hi";
+
+		if(example == "Hi") {
+			console.log("example set to Hi");
+		}else if (example == "Bye") {
+			console.log("example set to Bye");
+		}else {
+			console.log("something else");
+		}
+
+		for(var i = 0; i < 5; i += 1) {
+			console.log(i);
+		}
+
+		var i = 10;
+		while(i != 0) {
+			console.log(i);
+			i -= 1;
+		}
+
+		function examplefunction() {
+			alert("this function is called from the html document on load");
+		}
+
+		function linkfunction(myParam1) {
+			if(typeof myParam1 == 'undefined') {
+				alert("myParam1 is undefined");
+			}
+			alert("This function is executed when the link is clicked");
+		}
+
+		var arrayExample = [];
+
+		arrayExample.push(1);
+		arrayExample.push("test");
+		console.log(arrayExample);
+
+		var objectExample = {
+			"attr1": "value1",
+			"attr2": "value2",
+			methodExample: function() {
+				alert("method!");
+			}
+		};	
+
+		console.log(objectExample);	
+
+		console.log("Hello World");
+
+		// alert("Javascript Example!");
+		</script>
 	</head>
 
-	<script type="text/javascript">
-	console.log("Hello World");
+<body onload="javascript:examplefunction();">
 
-	alert("Javascript Example!");
+<a href="javascript:linkfunction();">JS Link</a>
 
-	var example = "Hi";
-
-	if(example == "Hi") {
-		alert("example set to Hi");
-	}else if (example = "Bye") {
-		alert("example set to Bye");
-	}else {
-		alert("something else");
-	}
-
-
-	function examplefunction() {
-		alert("this function is called from the html document on load");
-	}
-
-	var arrayExample = [];
-
-	arrayExample.push(1);
-	arrayExample.push("test");
-	console.log(arrayExample);
-	</script>
-<body onLoad="javascript:examplefunction();">
-	
 </body>
 </html>

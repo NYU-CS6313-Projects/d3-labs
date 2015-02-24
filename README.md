@@ -13,6 +13,8 @@ This repo contains example code from the d3 lab videos
 * [Mozilla HTML Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 * [Mozilla CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
 * [Mozilla JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
+* [jQuery](http://jquery.com/)
+    - [jQuery API](http://api.jquery.com/)
 
 ##Directories
 ###video1
