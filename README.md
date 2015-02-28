@@ -19,8 +19,9 @@ This repo contains example code from the d3 lab videos
 ##Directories
 ###video1
 Video 1 covered using Git.
-The example repository is found here, as well as some stuff on branching
 
+The example repository is found here, as well as some stuff on branching
+* [Video Link](https://stream.nyu.edu/media/Git+and+Github/1_6l9mftht)
 * [Git Branching](http://nvie.com/posts/a-successful-git-branching-model/)
     - Covers the concept of branching for collaboration. 
     - For simplicity's sake, you may wish to avoid branching, but this is available as an option, if you desire
@@ -33,12 +34,14 @@ The example repository is found here, as well as some stuff on branching
 ###video2
 HTML and CSS. Sample code here
 
+* [Video Link](https://stream.nyu.edu/media/HTML+%26+CSS/1_nwr63eiq)
 * [Mozilla HTML Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 * [Mozilla CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
 
 ###video3
 Javascript and Jquery
 
+* [Video Link](https://stream.nyu.edu/media/Javascript+%26+jQuery/1_y6erias8)
 * [Mozilla JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
 * [jQuery](http://jquery.com/)
     - [jQuery API](http://api.jquery.com/)
