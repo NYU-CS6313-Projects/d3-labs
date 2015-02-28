@@ -2,8 +2,10 @@
 <html>
 	<head>
 		<script type="text/javascript">
+// Example variable declaration
 		var example = "Hi";
 
+                //If statement example, showing if, else if, else chain
 		if(example == "Hi") {
 			console.log("example set to Hi");
 		}else if (example == "Bye") {
@@ -12,6 +14,7 @@
 			console.log("something else");
 		}
 
+// For, and while loop example. Just like in C/C++/Java
 		for(var i = 0; i < 5; i += 1) {
 			console.log(i);
 		}
@@ -22,10 +25,14 @@
 			i -= 1;
 		}
 
+// Function definitions
+// Note that there is no return type
 		function examplefunction() {
 			alert("this function is called from the html document on load");
 		}
 
+//A function with a parameter. Again no type. Note that all parameters are optional in Javascript
+//That is, calling linkfunction without it's parameters will successfully execute
 		function linkfunction(myParam1) {
 			if(typeof myParam1 == 'undefined') {
 				alert("myParam1 is undefined");
@@ -33,12 +40,15 @@
 			alert("This function is executed when the link is clicked");
 		}
 
+// Example of an array in JS, pushing onto it, and outputting it to the log
+// You can iterate this exactly as you would in C, using arrayExample.length
 		var arrayExample = [];
 
 		arrayExample.push(1);
 		arrayExample.push("test");
 		console.log(arrayExample);
 
+// Objects in Javascript. No access control, naming methods is very weird
 		var objectExample = {
 			"attr1": "value1",
 			"attr2": "value2",
@@ -47,6 +57,7 @@
 			}
 		};	
 
+//Logging to console example
 		console.log(objectExample);	
 
 		console.log("Hello World");
@@ -55,6 +66,7 @@
 		</script>
 	</head>
 
+<!-- two examples of using javascript from HTML -->
 <body onload="javascript:examplefunction();">
 
 <a href="javascript:linkfunction();">JS Link</a>

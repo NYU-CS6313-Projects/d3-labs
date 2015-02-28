@@ -18,10 +18,12 @@
 		}
 		</style>
 
+                <!-- Load the local copy of jquery -->
 		<script type="text/javascript" src="jquery.min.js"></script>
 
 		<script type="text/javascript">
 
+// Flip the visibility state of the element with id hide
 		function flip() {
 			var section = $("#hide");
 			if( section.is(":visible") ) {
@@ -31,6 +33,7 @@
 			}
 		}
 
+// Get the contents of a textbox and checkbox, and alert them to the user
 		function input() {
 			var textarea = $("#text1").val();
 			var check = $("#check1");
@@ -42,6 +45,7 @@
 	</head>
 <body>
 		<div class="section">
+                    <!-- the button triggers the flip function when clicked -->
 			<input type="submit" name="sub1" value="Hide/Show" onclick="javascript:flip();" />
 			<div id="hide">
 				<div class="red sameLine">Red Section</div>	
@@ -50,9 +54,12 @@
 		</div>
 
 		<div class="red">Red Section</div>	
+                <!-- when clicked, jQuery  toggles the blue class on this div -->
 		<div class="blue" onclick="javascript:$(this).toggleClass('blue');">Blue Section</div>	
 
 		<div class="section">
+                    <! -- when the form is submitted , the input function is executed, but
+                    the page is not changed -->
 			<form onsubmit="javascript:input();return false">
 				<input type="text" id="text1" name="textinput" />
 				<input type="checkbox" id="check1" name="check" />
