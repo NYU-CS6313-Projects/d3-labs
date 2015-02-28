@@ -22,11 +22,13 @@ Video 1 covered using Git.
 The example repository is found here, as well as some stuff on branching
 
 * [Git Branching](http://nvie.com/posts/a-successful-git-branching-model/)
-    - Covers the concept of branching for collaboration. Great for larger projects, but probably more than you need for this course. Just Remember: Branch, make changes, then merge changes into master. This alleviates some headaches.
+    - Covers the concept of branching for collaboration. 
+    - For simplicity's sake, you may wish to avoid branching, but this is available as an option, if you desire
 * Visual Git Applications
     - [Github Desktop Client](https://windows.github.com/) or for [Mac](https://mac.github.com/)
     - [Sourcetree](https://www.atlassian.com/software/sourcetree)
 * [Pro Git](http://git-scm.com/book/en/v2), the best book on Git. Completely Free
+    - Most important chapters are 1 (for installation), 2 for using Git, and 6 for use of Github
 
 ###video2
 HTML and CSS. Sample code here
