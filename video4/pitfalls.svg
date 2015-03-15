@@ -25,6 +25,6 @@
     <!-- Where's my text? -->
     <text x="0" y="0" fill="">Hello World!</text>
     <!-- the x,y coords correspond to the MIDDLE of the text, not the left side -->
-    <!-- Your coordinates need to reflect that -->
-    <text x="0" y="50" fill="">Hello World!</text>
+    <!-- Your coordinates need to reflect that-->
+    <text x="0" y="24" fill="">Hello World!</text>
 </svg>
