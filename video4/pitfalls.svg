@@ -21,7 +21,7 @@
     <!-- Help! Where's my line? -->
     <line x1="50" y1="175" x2="150" y2="250" />
     <!-- Oh there it is. Make sure you define a stroke color for the line -->
-    <line x1="150" y1="255" x2="250" y2="300" style="stroke-width: 1px;stroke:black;" />
+    <line x1="150" y1="255" x2="250" y2="300" style="stroke:black;" />
 
 
     <!-- Where's my text? -->
