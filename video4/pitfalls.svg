@@ -12,9 +12,11 @@
     <!-- Overlapping rectangles
         Note that the rects earlier in the document are below the later ones
         This is true for ALL svg elements in the document -->
-    <rect width="100" height="100" x="50" y="50" style="fill:red" />
-    <rect width="80" height="80" x="50" y="50" style="fill:blue" />
-    <rect width="60" height="60" x="50" y="50" style="fill:green" />
+    <g transform="translate(50,50)">
+        <rect width="100" height="100" x="0" y="0" style="fill:red" />
+        <rect width="80" height="80" x="0" y="0" style="fill:blue" />
+        <rect width="60" height="60" x="0" y="0" style="fill:green" />
+    </g>
 
     <!-- Help! Where's my line? -->
     <line x1="50" y1="175" x2="150" y2="250" />
