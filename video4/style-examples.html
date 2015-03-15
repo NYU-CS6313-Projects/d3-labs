@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+.twopxline {
+    stroke-width: 2px;
+    stroke: blue;
+    fill: none;
+}
+.redline {
+    stroke: red;
+}
+.redfill {
+    fill: red;
+}
+#blue {
+    fill: blue;
+}
+    </style>
+</head>
+<body>
+<svg width="300" height="300">
+    <rect width="50" height="50" x="0" y="0" />
+    <rect width="50" height="50" x="0" y="51" class="redline"/>
+    <rect width="50" height="50" x="0" y="102" class="redfill"/>
+    <rect width="50" height="50" x="0" y="153" id="blue"/>
+    <rect width="50" height="50" x="0" y="205" class="twopxline"/>
+</svg>
+</body>
+</html>
