@@ -44,3 +44,10 @@ Polygon is similar to polyline, but will close the shape
 Path is capable of drawing a more complex line, such a curve. Let D3 do the work with these.
 See [here](https://github.com/mbostock/d3/wiki/SVG-Shapes#path-data-generators) for how to use D3
 for that
+
+## text 
+Draws text on the screen. Positioning text is tricky. 
+Text starts to be drawn at the x,y position given, and is drawn upward from that spot.
+(This is why trying to draw text at position 0,0 shows nothing.)
+
+``<text x="50" y="12">Hello World</text>`` 
