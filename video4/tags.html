@@ -7,34 +7,26 @@
 <body>
 <h1 id="most-important-svg-tags">Most Important SVG tags</h1>
 
-<h2 id="g">g</h2>
-
-<p>An SVG grouping tag; just like div is for HTML. Any styles applied to a g, 
-will apply to anything inside of the g. Also, note the very useful transform attribute. 
-This lets you apply geometric transformations like translation, skewing, rotation, etc. 
-See <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform">here</a> 
-for a list of transformations</p>
-<p><code>&lt;g transform=&quot;translate(50,50)&quot;&gt;&lt;/g&gt;</code> Anything in 
-this group would have 50 added to it's x and y positions.</p>
-
-<svg >
-<g transform="translate(50,50)">
-<rect width="50" height="50" x="0" y="0"/>
-</g>
-</svg>
 
 <h2 id="line">line</h2>
 <p>Draw a straight line from x1,y1 to x2,y2. x1,y1;x2,y2 are attributes that are used to set the 
 line's coordinates</p>
-<p><code>&lt;line x1=&quot;0&quot; y1=&quot;0&quot; x2=&quot;100&quot; y2=&quot;100&quot; /&gt;</code>
-would draw a straight line between 0,0 and 100,100</p>
+<p><pre><code>
+&lt;svg &gt; 
+&lt;line x1=&quot;0&quot; y1=&quot;0&quot; x2=&quot;100&quot; y2=&quot;100&quot; style=&quot;stroke:black;&quot; /&gt; 
+&lt;/svg&gt;	
+</code></pre></p>
 <svg >
 <line x1="0" y1="0" x2="100" y2="100" style="stroke:black;" />
 </svg>
 
 <h2 id="rect">rect</h2>
 <p>Draw a rectangle by setting the x,y (upper left position) and width and height</p>
-<p><code>&lt;rect width=&quot;50&quot; height=&quot;50&quot; x=&quot;0&quot; y=&quot;0&quot;/&gt;</code></p>
+<p><pre><code>
+&lt;svg &gt; 
+&lt;rect width=&quot;50&quot; height=&quot;50&quot; x=&quot;0&quot; y=&quot;0&quot;/&gt; 
+&lt;/svg&gt;
+</code></pre></p>
 <svg >
 <rect width="50" height="50" x="0" y="0"/>
 </svg>
@@ -44,9 +36,15 @@ would draw a straight line between 0,0 and 100,100</p>
 one for x and one for y axis)</p>
 <p>cx,cy set the centre point of the circle/ellipse r sets the radius of the circle rx,ry sets 
 the radius on the x axis and y axis of the ellipse</p>
-<p><code>&lt;ellipse cx=&quot;50&quot; cy=&quot;50&quot; rx=&quot;10&quot; ry=&quot;5&quot;/&gt;</code> creates an ellipse at 50,50 with a radius along the x axis of 10, 5 along the y axis</p>
+<p><pre><code>
+&lt;svg &gt; 
+&lt;ellipse cx=&quot;50&quot; cy=&quot;50&quot; rx=&quot;50&quot; ry=&quot;20&quot;/&gt; 
+&lt;circle cx=&quot;150&quot; cy=&quot;100&quot; r=&quot;25&quot; /&gt;
+&lt;/svg&gt;
+</code></pre></p>
 <svg >
-<ellipse cx="50" cy="50" rx="10" ry="5"/>
+<ellipse cx="50" cy="50" rx="50" ry="20"/>
+<circle cx="150" cy="100" r="25" />
 </svg>
 
 <h2 id="polygon-and-polyline">polygon and polyline</h2>
@@ -54,7 +52,14 @@ the radius on the x axis and y axis of the ellipse</p>
 <p>Polyline: create a line formed from multiple lines that are connected (but will not be automatically closed)</p>
 <p>Note that by default, SVG will fill the shape, so they look identical at first. You can apply the <code>fill: none;</code> style to see the difference
 <p>points attributes defines the sequence in points in a space delimited list.</p>
-<p><code>&lt;polyline points=&quot;0,0 50,50 10,0&quot;/&gt;</code> creates a line with two segments, one from 0,0 to 50,50; and another from 50,50 to 10,0. The shape is then filled</p>
+<p><pre><code>
+&lt;svg &gt; 
+&lt;polyline points=&quot;0,0 50,50 10,0&quot; style=&quot;stroke:black;fill:none;&quot;/&gt; 
+&lt;g transform=&quot;translate(0,50)&quot;&gt; 
+&lt;polygon points=&quot;0,0 50,50 10,0&quot; style=&quot;stroke:black;fill:none;&quot;/&gt; 
+&lt;/g&gt; 
+&lt;/svg&gt;	
+</code> </pre></p>
 <svg >
 <polyline points="0,0 50,50 10,0" style="stroke:black;fill:none;"/>
 <g transform="translate(0,50)">
@@ -68,9 +73,32 @@ the radius on the x axis and y axis of the ellipse</p>
 
 <h2 id="text">text</h2>
 <p>Draws text on the screen. Positioning text is tricky. Text starts to be drawn at the x,y position given, and is drawn upward from that spot. (This is why trying to draw text at position 0,0 shows nothing. See pitfalls.svg)</p>
-<p><code>&lt;text x=&quot;50&quot; y=&quot;12&quot;&gt;Hello World from SVG&lt;/text&gt;</code></p>
+<p><pre><code>
+&lt;svg&gt; 
+&lt;text x=&quot;50&quot; y=&quot;12&quot;&gt;Hello World from SVG&lt;/text&gt; 
+&lt;/svg&gt;
+</code></pre></p>
 <svg>
 <text x="50" y="12">Hello World from SVG</text>
+</svg>
+<h2 id="g">g</h2>
+
+<p>An SVG grouping tag; just like div is for HTML. Any styles applied to a g, 
+will apply to anything inside of the g. Also, note the very useful transform attribute. 
+This lets you apply geometric transformations like translation, skewing, rotation, etc. 
+See <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform">here</a> 
+for a list of transformations</p>
+<p><pre><code>&lt;svg&gt; 
+&lt;g transform=&quot;translate(50,50)&quot;&gt; 
+&lt;rect width=&quot;50&quot; height=&quot;50&quot; x=&quot;0&quot; y=&quot;0&quot;/&gt; 
+&lt;/g&gt; 
+&lt;/svg&gt;</code></pre>
+</p>
+
+<svg>
+<g transform="translate(50,50)">
+<rect width="50" height="50" x="0" y="0"/>
+</g>
 </svg>
 </body>
 </html>
