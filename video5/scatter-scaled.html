@@ -37,8 +37,12 @@ function onstart() {
             .attr("height", height);
 
     //Scales for placing elements on screen
-    var x = d3.scale.linear().domain([0,350]).range([0,width]);
-    var y = d3.scale.linear().domain([0,350]).range([0,height]);
+    var x = d3.scale.linear()
+            .domain([0,350])
+            .range([0,width]);
+    var y = d3.scale.linear()
+            .domain([0,350])
+            .range([0,height]);
 
     //Axis are the visual renderings of scales
     //var xAxis = d3.svg.axis().scale(x).orient("bottom");

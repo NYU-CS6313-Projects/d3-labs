@@ -5,21 +5,6 @@
     <title></title>
     <!-- Load the D3 Library -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"> </script>
-        <style type="text/css">
-        .axis path,
-        .axis line {
-            fill: none;
-            stroke: black;
-            shape-rendering: crispEdges;
-        }
-        .axis text {
-            fill: none;
-            stroke: black;
-            shape-rendering: crispEdges;
-            font-family: sans-serif;
-            font-size: 11px;
-        }
-        </style>
 </head>
 <body>
     <script type="text/javascript">
@@ -57,6 +42,7 @@ function onstart() {
         .attr("y2", "250")
         .style("stroke", "black")
 }
+
 //This is identical to setting the onLoad attribute of the body tag
 window.onload = onstart();
     </script>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- Load the D3 Library -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"> </script>
+        <style type="text/css">
+        .red {
+            fill: red;
+        }
+        .blue {
+            fill: blue;
+        }
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+        .axis text {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+        </style>
+</head>
+<body>
+    <script type="text/javascript">
+//JS after, not before the body!
+function onstart() {
+    var height = 300;
+    var width = 300;
+    var padding = 25;
+
+    //get the body element
+    var svg = d3.select("body")
+        //Add an html element called svg 
+        .append("svg")
+            //set the width and height attributes to this element to be 300
+            .attr("width", width + padding)
+            .attr("height", height);
+
+    d3.json("./bar.json", function(error, data) {
+        var maxY = d3.max(data, function (d, i ) {
+            return parseInt(d.x);
+        });
+
+        var minY = d3.min(data, function (d, i ) {
+            return parseInt(d.x);
+        });
+
+        var x = d3.scale.linear()
+                .domain([1,10])
+                .range([padding,width]);
+
+        var y = d3.scale.linear()
+                .domain([minY, maxY])
+                .range([padding,width]);
+        var y2 = d3.scale.linear()
+                .domain([minY, maxY])
+                .range([width,padding]);
+
+        var xAxis = d3.svg.axis().scale(x).orient("bottom");
+        var yAxis = d3.svg.axis().scale(y2).orient("right");
+
+        svg.append("g").attr("class", "axis").call(xAxis);
+        svg.append("g").attr("class", "axis").call(yAxis);
+
+        svg.selectAll("rect")
+            .data(data)
+            .enter()
+            .append("rect")
+                .attr("x", function(d, i) { return x(i)  + padding + 5; } )
+                .attr("y", function(d, i) { return y2(d['x']); } )
+                .attr("width", function(d, i) { return 10;} )
+                .attr("height", function(d, i) { return y(d['x']) -padding; } )
+                .attr("class", function(d, i) { 
+                    if(parseInt(d['c']) >= 3) {
+                        return "red"; 
+                    } else {
+                        return "blue";
+                    } 
+                } );
+
+    });
+}
+
+//This is identical to setting the onLoad attribute of the body tag
+window.onload = onstart();
+    </script>
+
+</body>
+</html>
