@@ -6,8 +6,8 @@ This repo contains example code from the d3 lab videos
 * [Scott Murray's Book on D3](http://chimera.labs.oreilly.com/books/1230000000345/index.html)
 	- Chapter 3 covers similar content to the second video. You will probably find it useful for more advanced things
 	- Chapter 4 covers settings up your environment. Useful, especially if you're on windows. 
-	- Chapters 5, 6 are covered by Video 4.
-	- Chapters 7, 8 are covered by Video 5. 
+	- Chapters 5, 6 are covered by Video 5.
+	- Chapters 7, 8 are covered by Video 6. 
 	- Chapter 9 is not covered, and is skippable
 	- Chapter 10 covers interactive visualisation. The basics will be covered in Video 5 
 * [Mozilla HTML Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
@@ -45,3 +45,9 @@ Javascript and Jquery
 * [Mozilla JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
 * [jQuery](http://jquery.com/)
     - [jQuery API](http://api.jquery.com/)
+
+###video4
+SVGs
+
+* [Video Link](https://stream.nyu.edu/media/Javascript+%26+jQuery/1_y6erias8)
+* [Mozilla SVG Reference](https://developer.mozilla.org/en-US/docs/Web/SVG)
