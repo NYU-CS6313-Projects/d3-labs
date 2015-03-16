@@ -9,7 +9,7 @@ This repo contains example code from the d3 lab videos
 	- Chapters 5, 6 are covered by Video 5.
 	- Chapters 7, 8 are covered by Video 6. 
 	- Chapter 9 is not covered, and is skippable
-	- Chapter 10 covers interactive visualisation. The basics will be covered in Video 5 
+	- Chapter 10 covers interactive visualisation. The basics will be covered in Video 6 
 * [Mozilla HTML Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 * [Mozilla CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
 * [Mozilla JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
@@ -51,3 +51,10 @@ SVGs
 
 * [Video Link](https://stream.nyu.edu/media/SVG/1_4owgxhrr)
 * [Mozilla SVG Reference](https://developer.mozilla.org/en-US/docs/Web/SVG)
+
+###video5
+Introduction to D3: drawing elements, loading data, how to make a scatterplot
+
+* [Video Link](https://stream.nyu.edu/media/D3+Basics/1_jp8ahplr)
+* [D3 Documentation](https://github.com/mbostock/d3/wiki)
+* [D3 Path Generator Interpolation Strategies](https://github.com/mbostock/d3/wiki/SVG-Shapes#line_interpolate)
