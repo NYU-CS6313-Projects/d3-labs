@@ -45,12 +45,12 @@ function onstart() {
             .range([0,height]);
 
     //Axis are the visual renderings of scales
-    //var xAxis = d3.svg.axis().scale(x).orient("bottom");
-    //var yAxis = d3.svg.axis().scale(y).orient("right");
+    var xAxis = d3.svg.axis().scale(x).orient("bottom");
+    var yAxis = d3.svg.axis().scale(y).orient("right");
 
     //This puts those axis on screen
-    //svg.append("g").attr("class", "axis").call(xAxis);
-    //svg.append("g").attr("class", "axis").call(yAxis);
+    svg.append("g").attr("class", "axis").call(xAxis);
+    svg.append("g").attr("class", "axis").call(yAxis);
 
     //Load up the JSON file example.json
     d3.json("./example.json", function(error, data) {

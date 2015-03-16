@@ -6,28 +6,21 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"> </script>
 
 <script type="text/javascript">
-d3.csv("./example.csv", function(error, data) {
-    console.log("CSV")
-    if (error) {
-        return console.warn(error);
-    }
-    console.log(data);
-    
-    //your vis code here
-});
-
 d3.json("./example2.json", function(error, data) {
-    console.log("JSON")
     if (error) {
         return console.warn(error);
     }
 
-    for(var i = 0; i < data.length; i += 1) {
-        data[i].x *= 10;
-    }
-    
-    console.log(data);
-    //Your vis code here
+    var svg = d3.select("body").append("svg").attr("width", "300px").attr("height", "300px")
+    var line = d3.svg.line()
+            .x(function(d) {return d.x})
+            .y(function(d) {return d.y})
+            .interpolate("linear")
+
+    svg.append("path")
+            .attr("d", line(data))
+            .style("stroke", "black")
+
 });
 
 
