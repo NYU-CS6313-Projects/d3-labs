@@ -25,37 +25,39 @@
     <script type="text/javascript">
 //JS after, not before the body!
 function onstart() {
+    var height = 300;
+    var width = 300;
+
     //get the body element
     var svg = d3.select("body")
         //Add an html element called svg 
         .append("svg")
             //set the width and height attributes to this element to be 300
-            .attr("width", "300")
-            .attr("height", "300");
+            .attr("width", width)
+            .attr("height", height);
 
-    //svg is now a d3 selector to the svg element
+    //Load up the JSON file example.json
+    d3.json("./example.json", function(error, data) {
+        //If there is an error, log it, and get out
+        if (error) {
+            return console.warn(error);
+        }
 
-    svg.append("rect")
-        .attr("width", 100)
-        .attr("height", "100")
-        .attr("x", "50")
-        .attr("y", "50")
+        //Otherwise, dump the data to the console for debugging
+        console.log(data); 
 
-    svg.append("circle")
-        .attr("cx", "250")
-        .attr("cy", "100")
-        .attr("r", "50")
-
-    svg.append("polygon")
-        .attr("points", "225,250 275,250 250,200")
-        .style("fill", "lawngreen")
-
-    svg.append("line")
-        .attr("x1", "50")
-        .attr("y1", "175")
-        .attr("x2", "150")
-        .attr("y2", "250")
-        .style("stroke", "black")
+        //Select all circles (but it's empty...?)
+        svg.selectAll("circle")
+            //Loop through the data
+            .data(data).enter()
+                //Add a rectangle for each data element
+                .append("circle")
+                    .attr("r", "5")
+                    //function(d) accesses the data. The return value of the function
+                    //is the value the attribute gets!
+                    .attr("cx", function(d) { return d.x; })
+                    .attr("cy", function(d) { return d.y; })
+    } )
 }
 //This is identical to setting the onLoad attribute of the body tag
 window.onload = onstart();
