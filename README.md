@@ -49,5 +49,5 @@ Javascript and Jquery
 ###video4
 SVGs
 
-* [Video Link](https://stream.nyu.edu/media/Javascript+%26+jQuery/1_y6erias8)
+* [Video Link](https://stream.nyu.edu/media/SVG/1_4owgxhrr)
 * [Mozilla SVG Reference](https://developer.mozilla.org/en-US/docs/Web/SVG)
