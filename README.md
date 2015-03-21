@@ -58,3 +58,6 @@ Introduction to D3: drawing elements, loading data, how to make a scatterplot
 * [Video Link](https://stream.nyu.edu/media/D3+Basics/1_jp8ahplr)
 * [D3 Documentation](https://github.com/mbostock/d3/wiki)
 * [D3 Path Generator Interpolation Strategies](https://github.com/mbostock/d3/wiki/SVG-Shapes#line_interpolate)
+* Errata
+    - The original better-scales.js was missing a few parenthesis to close function blocks. This is now fixed
+    - An additional file, scatter-done.html is now available, showing how to use the dynamic scales
