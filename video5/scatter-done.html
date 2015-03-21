@@ -37,41 +37,25 @@ function onstart() {
             .attr("width", width + padding)
             .attr("height", height + padding);
 
-    //Note that we've moved the scales and axis drawing into the d3.json block. It's because
-    //we need the data
+    //Scales for placing elements on screen
+    var x = d3.scale.linear()
+            .domain([0,350])
+            .range([padding,width]);
+
+    var y = d3.scale.linear()
+            .domain([0,350])
+            .range([padding,height]);
+
+    //Axis are the visual renderings of scales
+    var xAxis = d3.svg.axis().scale(x).orient("bottom");
+    var yAxis = d3.svg.axis().scale(y).orient("right");
+
+    //This puts those axis on screen
+    svg.append("g").attr("class", "axis").call(xAxis);
+    svg.append("g").attr("class", "axis").call(yAxis);
 
     //Load up the JSON file example.json
     d3.json("./example.json", function(error, data) {
-        var maxY = d3.max(data, function (d, i ) {
-                return parseInt(d.x);
-        });
-
-        var minY = d3.min(data, function (d, i ) {
-                return parseInt(d.x);
-        })
-
-        //Now a scale that dynamically modifies itself even when the data changes
-
-        var extents = d3.extent(data, function (d, i ) {
-                return parseInt(d.x);
-        })
-
-        var x = d3.scale.linear()
-		.domain([extents[0],extents[1]])
-		.range([padding,width]);
-
-        var y = d3.scale.linear()
-                .domain([0,350])
-                .range([padding,height]);
-
-        //Axis are the visual renderings of scales
-        var xAxis = d3.svg.axis().scale(x).orient("bottom");
-        var yAxis = d3.svg.axis().scale(y).orient("right");
-
-        //This puts those axis on screen
-        svg.append("g").attr("class", "axis").call(xAxis);
-        svg.append("g").attr("class", "axis").call(yAxis);
-
         //If there is an error, log it!
         if (error) {
             return console.warn(error);
