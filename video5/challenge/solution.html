@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            .red {
+                    fill: red;
+            }
+            .blue {
+                    fill: blue;
+            }
+            .lineChart {
+                    stroke: red;
+                    stroke-width: 3px;
+                    fill: none;
+            }
+            .axis path,
+            .axis line {
+                    fill: none;
+                    stroke: black;
+                    shape-rendering: crispEdges;
+            }
+            .axis text {
+                    fill: none;
+                    stroke: black;
+                    shape-rendering: crispEdges;
+                    font-family: sans-serif;
+                    font-size: 11px;
+            }
+        </style>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+        <script type="text/javascript">
+                var padding = 50;
+        
+
+            d3.json("./line.json", function(error, data) {
+                if(error) {
+                    return console.warn(error);
+                }
+
+                var extentX = d3.extent(data, function(d) {
+                    return parseInt(d.x);
+                })
+
+                var extentY = d3.extent(data, function(d) {
+                    return parseInt(d.y);
+                })
+
+                
+                var svg2 = d3.select("body").append("svg").attr("width", 400).attr("height", 400);
+
+                var x = d3.scale.linear().domain(extentX).range([padding,350]);
+                var y2 = d3.scale.linear().domain(extentY).range([padding,350]);
+                var y = d3.scale.linear().domain(extentY).range([350,padding]);
+                var xAxis = d3.svg.axis().scale(x).orient("bottom");
+                var yAxis = d3.svg.axis().scale(y).orient("right");
+                svg2.append("g").attr("class", "axis").call(xAxis);
+                svg2.append("g").attr("class", "axis").call(yAxis);
+
+
+                var theLine = d3.svg.line()
+                    .x(function (d, i) {
+                        //console.log(JSON.stringify(d));
+                        return x(d['x']);
+                    })
+                    .y(function (d) {
+                        return y(d['y']);
+                    });
+
+                svg2.append("path") 
+                    .attr("class", "lineChart")
+                    .attr("d",  theLine(data));
+
+                    
+
+            });
+            
+
+            d3.json("./bar.json", function(error, data) {
+                var svg1 = d3.select("body").append("svg").attr("width", 400).attr("height", 400);
+
+                var maxY = d3.max(data, function (d, i ) {
+                        return parseInt(d.x);
+
+                });
+
+                var minY = d3.min(data, function (d, i ) {
+                        return parseInt(d.x);
+
+                });
+
+                var x = d3.scale.linear().domain([0,10]).range([padding,350]);
+                var y = d3.scale.linear().domain([minY, maxY]).range([padding,350]);
+                var y2 = d3.scale.linear().domain([minY, maxY]).range([350,padding]);
+                var xAxis = d3.svg.axis().scale(x).orient("bottom");
+                var yAxis = d3.svg.axis().scale(y2).orient("right");
+                svg1.append("g").attr("class", "axis").call(xAxis);
+                svg1.append("g").attr("class", "axis").call(yAxis);
+
+                svg1.selectAll("rect")
+                    .data(data)
+                    .enter()
+                    .append("rect")
+                        .attr("x", function(d, i) { return x(i); } )
+                        .attr("y", function(d, i) {return y2(d['x']); } )
+                        .attr("width", function(d, i) { return 10;} )
+                        .attr("height", function(d, i) { return y(d['x']) -padding; } )
+                        .attr("class", function(d, i) { if(parseInt(d['c']) >= 5) {return "red"; } else {return "blue";} } );
+
+            });
+
+        </script>
+</head>
+
+<body>
+
+</body>
+</html>
