@@ -33,11 +33,13 @@
                 var padding = 50;
         
 
+            // Load the line.json file
             d3.json("./line.json", function(error, data) {
                 if(error) {
                     return console.warn(error);
                 }
 
+                // Calculate the extents of the data (i.e. min and max)
                 var extentX = d3.extent(data, function(d) {
                     return parseInt(d.x);
                 })
@@ -47,17 +49,30 @@
                 })
 
                 
+                // Create an SVG
                 var svg2 = d3.select("body").append("svg").attr("width", 400).attr("height", 400);
 
+                // Now the scales!
+
+                // The x scale, nothing special here
                 var x = d3.scale.linear().domain(extentX).range([padding,350]);
+                
+                // The y scale, again nothing special
                 var y2 = d3.scale.linear().domain(extentY).range([padding,350]);
+                
+                // A second y scale? Note the range; the arguments are swapped!
+                // This creates an inverted scale
                 var y = d3.scale.linear().domain(extentY).range([350,padding]);
+
+                // Create and draw the axis
                 var xAxis = d3.svg.axis().scale(x).orient("bottom");
                 var yAxis = d3.svg.axis().scale(y).orient("right");
                 svg2.append("g").attr("class", "axis").call(xAxis);
                 svg2.append("g").attr("class", "axis").call(yAxis);
+                // Because we used the inverted scale, the lower values will
+                // be on the bottom of the SVG (opposite the origin)
 
-
+                // Create a path
                 var theLine = d3.svg.line()
                     .x(function (d, i) {
                         //console.log(JSON.stringify(d));
@@ -67,8 +82,11 @@
                         return y(d['y']);
                     });
 
+                // Draw a path using that line generator
                 svg2.append("path") 
+                    //Style the line, see the CSS above
                     .attr("class", "lineChart")
+                    //Assign the data using the path generator
                     .attr("d",  theLine(data));
 
                     
@@ -78,7 +96,9 @@
 
             d3.json("./bar.json", function(error, data) {
                 var svg1 = d3.select("body").append("svg").attr("width", 400).attr("height", 400);
-
+                
+                // Extents, but calculated using min/max instead of extent
+                // Prefer d3.extent, so you don't iterate twice
                 var maxY = d3.max(data, function (d, i ) {
                         return parseInt(d.x);
 
@@ -89,23 +109,46 @@
 
                 });
 
+                // Create the scales, just like we did in the last part
                 var x = d3.scale.linear().domain([0,10]).range([padding,350]);
                 var y = d3.scale.linear().domain([minY, maxY]).range([padding,350]);
                 var y2 = d3.scale.linear().domain([minY, maxY]).range([350,padding]);
+
+                //Draw scales, just like before
                 var xAxis = d3.svg.axis().scale(x).orient("bottom");
                 var yAxis = d3.svg.axis().scale(y2).orient("right");
                 svg1.append("g").attr("class", "axis").call(xAxis);
                 svg1.append("g").attr("class", "axis").call(yAxis);
-
+    
+                // Draw  the bars
                 svg1.selectAll("rect")
                     .data(data)
                     .enter()
                     .append("rect")
+                        // x is assigned simply by using the scale
                         .attr("x", function(d, i) { return x(i); } )
-                        .attr("y", function(d, i) {return y2(d['x']); } )
+                        // Y posiiton is assigned by using the inverted scales
+                        // No fancy pixel math!
+                        .attr("y", function(d, i) { return y2(d['x']); } )
+                        // Width is the size of the bar
+                        // We hard code it to 10 here
+                        // but you can also use the (width - 2*padding)/data.length
+                        // To create a bar width that adjusts based on the width/
+                        // number of bars
                         .attr("width", function(d, i) { return 10;} )
+                        // Height of the bar: just throw this into the inverted scale
+                        // and take the padding into account (because of the axis at the top)
                         .attr("height", function(d, i) { return y(d['x']) -padding; } )
-                        .attr("class", function(d, i) { if(parseInt(d['c']) >= 5) {return "red"; } else {return "blue";} } );
+                        // This is cool: Apply a class based upon the data
+                        // In this case, assign the red or blue class based 
+                        // upon where the data is greater than above 5, or below 5
+                        .attr("class", function(d, i) { 
+                                if(parseInt(d['c']) >= 5) {
+                                    return "red"; 
+                                } else {
+                                    return "blue";
+                                } 
+                        });
 
             });
 
