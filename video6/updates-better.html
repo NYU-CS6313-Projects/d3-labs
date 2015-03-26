@@ -26,7 +26,7 @@
 var height = 300;
 var width = 300;
 var padding = 25;
-var x,y;
+var x,y, xAxis, yAxis;
 var data
 
 //get the body element
@@ -49,12 +49,12 @@ function onstart() {
             .range([padding,height]);
 
     //Axis are the visual renderings of scales
-    var xAxis = d3.svg.axis().scale(x).orient("bottom");
-    var yAxis = d3.svg.axis().scale(y).orient("right");
+    xAxis = d3.svg.axis().scale(x).orient("bottom");
+    yAxis = d3.svg.axis().scale(y).orient("right");
 
     //This puts those axis on screen
-    svg.append("g").attr("class", "axis").call(xAxis);
-    svg.append("g").attr("class", "axis").call(yAxis);
+    svg.append("g").classed({"axis": true, "axis-x": true}).call(xAxis);
+    svg.append("g").classed({"axis": true, "axis-y": true}).call(yAxis);
 
     //Load up the JSON file example.json
     d3.json("./example.json", function(error, newdata) {
@@ -122,6 +122,7 @@ function replace() {
     ]
     data = d;
 
+    updatescales()
     //Add the new data
     var circles = svg.selectAll("circle")
         .data(data, function(d) {return d.x})
@@ -139,7 +140,29 @@ function replace() {
             // Show the new data in red
             .style("fill", "red")
 
+}
 
+function updatescales() {
+    var xExtent = d3.extent(data, function(d) {
+            return d.x;
+            })
+    var yExtent = d3.extent(data, function(d) {
+            return d.y;
+            })
+    
+    x = d3.scale.linear()
+            .domain(xExtent)
+            .range([padding,width]);
+
+    y = d3.scale.linear()
+            .domain(yExtent)
+            .range([padding,height]);
+
+    xAxis = d3.svg.axis().scale(x).orient("bottom");
+    yAxis = d3.svg.axis().scale(y).orient("right");
+    
+    svg.selectAll(".axis-x").call(xAxis);
+    svg.selectAll(".axis-y").call(yAxis);
 }
 
 //This is identical to setting the onLoad attribute of the body tag

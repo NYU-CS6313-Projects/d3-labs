@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- Load the D3 Library -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"> </script>
+    <style type="text/css">
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+        .axis text {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+var height = 300;
+var width = 300;
+var padding = 25;
+var x,y, xAxis, yAxis;
+var data = []
+
+//get the body element
+var svg = d3.select("body")
+    //Add an html element called svg 
+    .append("svg")
+        //set the width and height attributes to this element to be 300
+        .attr("width", width + padding)
+        .attr("height", height + padding);
+        
+//JS after, not before the body!
+function onstart() {
+
+    //Scales for placing elements on screen
+    x = d3.scale.linear()
+            .domain([0,350])
+            .range([padding,width]);
+
+    y = d3.scale.linear()
+            .domain([0,350])
+            .range([padding,height]);
+
+    //Axis are the visual renderings of scales
+    xAxis = d3.svg.axis().scale(x).orient("bottom");
+    yAxis = d3.svg.axis().scale(y).orient("right");
+
+    //This puts those axis on screen
+    svg.append("g").classed({"axis": true, "axis-x": true}).call(xAxis);
+    svg.append("g").classed({"axis": true, "axis-y": true}).call(yAxis);
+
+    //Load up the JSON file example.json
+    d3.json("./example.json", function(error, newdata) {
+        //If there is an error, log it!
+        if (error) {
+            return console.warn(error);
+        }
+        update(newdata)
+    } )
+}
+
+function update(newdata, remove) {
+    remove = typeof remove !== 'undefined' ? remove: false;
+    if (remove) {
+        data = newdata
+    }else {
+        data = data.concat(newdata)
+    }
+    
+    console.log(data); 
+
+    var circles = svg.selectAll("circle").data(data, function(d) {return d.x});
+    
+    updatescales(data )
+        
+    if(remove) {
+        circles.exit().remove();
+    }
+
+    //Loop through the data
+    circles.enter()
+        //Add a rectangle for each data element
+        .append("circle")
+            .attr("r", "5")
+            //function(d) accesses the data. The return value of the function
+            //is the value the attribute gets!
+            .attr("cx", function(d) { return x(d.x); })
+            .attr("cy", function(d) { return y(d.y); })
+                    
+}
+
+function append() {
+    // Adds some more data into the vis
+
+    // I'm hard coding data for simplicity here.
+    // You'd probably get it from another json file, or from the user
+    var d = [
+        {"x": 25, "y": 25},
+        {"x": 125, "y": 125},
+        {"x": 225, "y": 225},
+        {"x": 325, "y": 325}
+    ]
+        
+    // Join the new data
+    console.log(d)
+
+    //Now update what's on the screen
+
+    update(d)    
+}
+
+function replace() {
+    var d = [
+        {"x": 75, "y": 75},
+        {"x": 175, "y": 175},
+        {"x": 275, "y": 275},
+        {"x": 375, "y": 375},
+        {"x": 475, "y": 475}
+    ]
+
+    update(d, true)
+}
+
+function updatescales(data) {
+    var xExtent = d3.extent(data, function(d) {
+        return d.x;
+    })
+    var yExtent = d3.extent(data, function(d) {
+        return d.y;
+    })
+    
+    x.domain(xExtent)
+    y.domain(yExtent)
+
+    xAxis = d3.svg.axis().scale(x).orient("bottom");
+    yAxis = d3.svg.axis().scale(y).orient("right");
+    
+    svg.selectAll(".axis-x").call(xAxis);
+    svg.selectAll(".axis-y").call(yAxis);
+}
+
+//This is identical to setting the onLoad attribute of the body tag
+window.onload = onstart();
+    </script>
+
+<input type="button" onClick="javascript:append();" value="append" />
+<input type="button" onClick="javascript:replace();" value="replace" />
+</body>
+</html>
