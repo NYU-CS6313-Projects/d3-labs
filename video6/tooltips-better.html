@@ -5,6 +5,7 @@
     <title></title>
     <!-- Load the D3 Library -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"> </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"> </script>
         <style type="text/css">
         .axis path,
         .axis line {
@@ -23,15 +24,19 @@
             fill: yellow;
             stroke: black;
         }
+        #tooltip {
+            position: absolute;
+            background-color: gray;
+        }
         #tooltip.hidden {
-                display: none;
+            display: none;
         }
 
         #tooltip p {
-                margin: 0;
-                font-family: sans-serif;
-                font-size: 16px;
-                line-height: 20px;
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 16px;
+            line-height: 20px;
         }
         </style>
 </head>
@@ -39,7 +44,35 @@
     <script type="text/javascript">
 function tooltip(d) {
 
+    // Select the element
+    var e = d3.select(this)
+        //Get the x and y position
+        var xPos = e.attr("cx")
+        var yPos = e.attr("cy")
+
+        d3.select("#tooltip")
+        //Set the position
+        .style("left", xPos + "px")
+        //Prevent overlap
+        .style("top", (yPos -50) + "px" )
+
+        //Now set the content
+        .select("#value")
+        .html("X: " + d.x + "<br \>" + "Y: " + d.y);
+
+    d3.select("#tooltip").classed("hidden", false);
+
+    /* Doing the same with Jquery, if you prefer:
+       var t = $("#tooltip")
+       t.css("left", xPos + "px");
+       t.css("top", (yPos - 50) + "px"); 
+       t.removeClass("hidden")
+       $("#value", t).html("X: " + d.x + "<br \>Y: " + d.y)
+
+       Either option works; it's a matter of what you're more comfortable with
+     */
 }
+
 //JS after, not before the body!
 function onstart() {
     var height = 300;
@@ -93,23 +126,18 @@ function onstart() {
                     .attr("cx", function(d) { return x(d.x); })
                     .attr("cy", function(d) { return y(d.y); })
 
-                    // The magic:
-                    // the function is called every time the event occurs
-                    .on("mouseover", function (d) {
-                        d3.select(this).classed("highlight", true)
+                    .on("mouseover", tooltip)
+                    .on("mouseout", function(d) {
+                        //Hide the tooltip
+                        d3.select("#tooltip").classed("hidden", true);
                     })
-                    .on("mouseout", function (d) {
-                        d3.select(this).classed("highlight", false)
-                    })
-                    .append("title")
-                        .text(function(d) {
-                            return "X: " + d.x + ", Y: " + d.y
-                        })
-    } )
+    })
 }
 //This is identical to setting the onLoad attribute of the body tag
 window.onload = onstart();
     </script>
-
+<div id="tooltip" class="hidden">
+	<p><strong id="value"> </strong></p>
+</div>
 </body>
 </html>
