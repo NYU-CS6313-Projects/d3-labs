@@ -62,3 +62,9 @@ Introduction to D3: drawing elements, loading data, how to make a scatterplot
     - better-scales.js had d3.extent misspelled as d3.extent*s*. This has been corrected
     - The original better-scales.js was missing a few parenthesis to close function blocks. This is now fixed
     - An additional file, scatter-dynamicscales.html is now available, showing how to use the dynamic scales
+
+###video6
+Interactive Visualisations, and Multi-pane challenge
+
+* [Video Link](https://stream.nyu.edu/media/D3A+Interactive+Vis/1_nxo5waw2)
+* [List of Standard Events for D3 Event Listeners](https://developer.mozilla.org/en-US/docs/Web/Events#Standard_events)
