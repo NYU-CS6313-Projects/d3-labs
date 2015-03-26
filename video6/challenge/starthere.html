@@ -35,107 +35,19 @@
 <body>
 
 <div id="list">
-    PLaceholder<br \><br \>
+    Placeholder<br \><br \>
     Put your list here!
+    <br \>
+    You can target this div with d3.select("&#35list")
 </div>
 <div id="scatter">
-
+    Use D3 To put your scatter plot here!
+    <br \>
+    You can target this div with d3.select("&#35scatter")
+    <br \>
+    e.g.: var svg = d3.select("&#35scatter").append("svg")....
 </div>
     <script type="text/javascript">
-var height = 300;
-var width = 300;
-var padding = 25;
-var x,y, xAxis, yAxis;
-var data = []
-
-//get the body element
-var svg = d3.select("#scatter")
-    //Add an html element called svg 
-    .append("svg")
-        //set the width and height attributes to this element to be 300
-        .attr("width", width + padding)
-        .attr("height", height + padding);
-        
-//JS after, not before the body!
-function onstart() {
-
-    //Scales for placing elements on screen
-    x = d3.scale.linear()
-            .domain([0,350])
-            .range([padding,width]);
-
-    y = d3.scale.linear()
-            .domain([0,350])
-            .range([padding,height]);
-
-    //Axis are the visual renderings of scales
-    xAxis = d3.svg.axis().scale(x).orient("bottom");
-    yAxis = d3.svg.axis().scale(y).orient("right");
-
-    //This puts those axis on screen
-    svg.append("g").classed({"axis": true, "axis-x": true}).call(xAxis);
-    svg.append("g").classed({"axis": true, "axis-y": true}).call(yAxis);
-
-    //Load up the JSON file example.json
-    d3.json("./data1.json", function(error, newdata) {
-        //If there is an error, log it!
-        if (error) {
-            return console.warn(error);
-        }
-        update(newdata)
-    } )
-}
-
-function update(newdata, remove) {
-    remove = typeof remove !== 'undefined' ? remove: false;
-    if (remove) {
-        data = newdata
-    }else {
-        data = data.concat(newdata)
-    }
-    
-    console.log(data); 
-
-    var circles = svg.selectAll("circle").data(data, function(d) {return d.x});
-    
-    updatescales(data )
-        
-    if(remove) {
-        circles.exit().remove();
-    }
-
-    //Loop through the data
-    circles.enter()
-        //Add a rectangle for each data element
-        .append("circle")
-            .attr("r", "5")
-            //function(d) accesses the data. The return value of the function
-            //is the value the attribute gets!
-            .attr("cx", function(d) { return x(d.x); })
-            .attr("cy", function(d) { return y(d.y); })
-                    
-}
-
-function updatescales(data) {
-    var xExtent = d3.extent(data, function(d) {
-        return d.x;
-    })
-    var yExtent = d3.extent(data, function(d) {
-        return d.y;
-    })
-    
-    x.domain(xExtent)
-    y.domain(yExtent)
-
-    xAxis = d3.svg.axis().scale(x).orient("bottom");
-    yAxis = d3.svg.axis().scale(y).orient("right");
-    
-    svg.selectAll(".axis-x").call(xAxis);
-    svg.selectAll(".axis-y").call(yAxis);
-}
-
-//This is identical to setting the onLoad attribute of the body tag
-window.onload = onstart();
     </script>
 </body>
 </html>
