@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- Load the D3 Library -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"> </script>
+        <style type="text/css">
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+        .axis text {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+        .highlight {
+            fill: yellow;
+            stroke: black;
+        }
+        </style>
+</head>
+<body>
+    <script type="text/javascript">
+//JS after, not before the body!
+function onstart() {
+    var height = 300;
+    var width = 300;
+    var padding = 25;
+
+    //get the body element
+    var svg = d3.select("body")
+        //Add an html element called svg 
+        .append("svg")
+            //set the width and height attributes to this element to be 300
+            .attr("width", width + padding)
+            .attr("height", height + padding);
+
+    //Scales for placing elements on screen
+    var x = d3.scale.linear()
+            .domain([0,350])
+            .range([padding,width]);
+
+    var y = d3.scale.linear()
+            .domain([0,350])
+            .range([padding,height]);
+
+    //Axis are the visual renderings of scales
+    var xAxis = d3.svg.axis().scale(x).orient("bottom");
+    var yAxis = d3.svg.axis().scale(y).orient("right");
+
+    //This puts those axis on screen
+    svg.append("g").attr("class", "axis").call(xAxis);
+    svg.append("g").attr("class", "axis").call(yAxis);
+
+    //Load up the JSON file example.json
+    d3.json("./example.json", function(error, data) {
+        //If there is an error, log it!
+        if (error) {
+            return console.warn(error);
+        }
+
+        //Otherwise, dump the data to the console for debugging
+        console.log(data); 
+
+        //Select all circles (but it's empty...?)
+        svg.selectAll("circle")
+            //Loop through the data
+            .data(data).enter()
+                //Add a rectangle for each data element
+                .append("circle")
+                    .attr("r", "5")
+                    //function(d) accesses the data. The return value of the function
+                    //is the value the attribute gets!
+                    .attr("cx", function(d) { return x(d.x); })
+                    .attr("cy", function(d) { return y(d.y); })
+
+                    // The magic:
+                    // the function is called every time the event occurs
+                    .on("mouseover", function (d) {
+                        d3.select(this).classed("highlight", true)
+                    })
+                    .on("mouseout", function (d) {
+                        d3.select(this).classed("highlight", false)
+                    });
+    } )
+}
+//This is identical to setting the onLoad attribute of the body tag
+window.onload = onstart();
+    </script>
+
+</body>
+</html>
