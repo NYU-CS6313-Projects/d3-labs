@@ -150,17 +150,9 @@ function updatescales() {
             return d.y;
             })
     
-    x = d3.scale.linear()
-            .domain(xExtent)
-            .range([padding,width]);
+    x.domain(xExtent)
+    y.domain(yExtent)
 
-    y = d3.scale.linear()
-            .domain(yExtent)
-            .range([padding,height]);
-
-    xAxis = d3.svg.axis().scale(x).orient("bottom");
-    yAxis = d3.svg.axis().scale(y).orient("right");
-    
     svg.selectAll(".axis-x").call(xAxis);
     svg.selectAll(".axis-y").call(yAxis);
 }

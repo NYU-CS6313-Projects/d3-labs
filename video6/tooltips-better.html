@@ -46,11 +46,11 @@ function tooltip(d) {
 
     // Select the element
     var e = d3.select(this)
-        //Get the x and y position
-        var xPos = e.attr("cx")
-        var yPos = e.attr("cy")
+   //Get the x and y position
+    var xPos = e.attr("cx")
+    var yPos = e.attr("cy")
 
-        d3.select("#tooltip")
+    d3.select("#tooltip")
         //Set the position
         .style("left", xPos + "px")
         //Prevent overlap

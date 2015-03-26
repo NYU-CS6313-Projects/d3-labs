@@ -70,7 +70,9 @@ function onstart() {
         //Select all circles (but it's empty...?)
         svg.selectAll("circle")
             //Loop through the data
-        .data(data, function(d) {return d.x}).enter()
+        .data(data, function(d) {
+            return d.x
+        }).enter()
                 //Add a rectangle for each data element
                 .append("circle")
                     .attr("r", "5")
@@ -87,10 +89,10 @@ function append() {
     // I'm hard coding data for simplicity here.
     // You'd probably get it from another json file, or from the user
     var d = [
-        {"x": 25, "y": 25},
-        {"x": 125, "y": 125},
-        {"x": 225, "y": 225},
-        {"x": 325, "y": 325}
+        {"x": 75, "y": 75},
+        {"x": 175, "y": 175},
+        {"x": 275, "y": 275},
+        {"x": 375, "y": 375}
     ]
         
     // Join the new data
@@ -100,7 +102,9 @@ function append() {
     //Now update what's on the screen
     //Notice this code is basically the same as before
     //It's probably a good idea to wrap this in a function, and reuse it in both places
-    svg.selectAll("circle").data(data).enter()
+    svg.selectAll("circle").data(data, function(d) {
+        return d.x
+    }).enter()
         .append("circle")
             .attr("r", "5")
             //function(d) accesses the data. The return value of the function
