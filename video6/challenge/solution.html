@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- Load the D3 Library -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"> </script>
+        <style type="text/css">
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+        .axis text {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+        #scatter {
+            width: 80%;
+            background-color: gray;
+            height: 100%;
+        }
+        #list {
+            width: 20%;
+            background-color: lightgray;
+            float: left;
+            height: 100%;
+        }
+        </style>
+</head>
+<body>
+
+<div id="list">
+</div>
+<div id="scatter">
+
+</div>
+    <script type="text/javascript">
+var height = 300;
+var width = 300;
+var padding = 25;
+var x,y, xAxis, yAxis;
+var data = []
+
+//get the body element
+var svg = d3.select("#scatter")
+    //Add an html element called svg 
+    .append("svg")
+        //set the width and height attributes to this element to be 300
+        .attr("width", width + padding)
+        .attr("height", height + padding);
+        
+//JS after, not before the body!
+function onstart() {
+
+    //Scales for placing elements on screen
+    x = d3.scale.linear()
+            .domain([0,350])
+            .range([padding,width]);
+
+    y = d3.scale.linear()
+            .domain([0,350])
+            .range([padding,height]);
+
+    //Axis are the visual renderings of scales
+    xAxis = d3.svg.axis().scale(x).orient("bottom");
+    yAxis = d3.svg.axis().scale(y).orient("right");
+
+    //This puts those axis on screen
+    svg.append("g").classed({"axis": true, "axis-x": true}).call(xAxis);
+    svg.append("g").classed({"axis": true, "axis-y": true}).call(yAxis);
+
+    //Load up the JSON file example.json
+    d3.json("./datasets.json", function(error, newdata) {
+        //If there is an error, log it!
+        if (error) {
+            return console.warn(error);
+        }
+        console.log(newdata);
+
+        d3.select("#list").selectAll("p").data(newdata).enter()
+            .append("p")
+            .html(function(d) {
+                return '<input type="button" value="' + d + '" onClick=\'javascript:updateplot("' + d + '")\' >'
+            });
+
+        d3.json(newdata[0], function(e, d) {
+            if (e) {
+                return console.warn(error);
+            }
+
+            update(d);
+            
+        });
+    } )
+}
+
+function update(newdata, remove) {
+    remove = typeof remove !== 'undefined' ? remove: false;
+    if (remove) {
+        data = newdata
+    }else {
+        data = data.concat(newdata)
+    }
+    
+    console.log(data); 
+
+    var circles = svg.selectAll("circle").data(data, function(d) {return d.x});
+    
+    updatescales(data )
+        
+    if(remove) {
+        circles.exit().remove();
+    }
+
+    //Loop through the data
+    circles.enter()
+        //Add a rectangle for each data element
+        .append("circle")
+            .attr("r", "5")
+            //function(d) accesses the data. The return value of the function
+            //is the value the attribute gets!
+            .attr("cx", function(d) { return x(d.x); })
+            .attr("cy", function(d) { return y(d.y); })
+                    
+}
+
+function updatescales(data) {
+    var xExtent = d3.extent(data, function(d) {
+        return d.x;
+    })
+    var yExtent = d3.extent(data, function(d) {
+        return d.y;
+    })
+    
+    x.domain([0, xExtent[1] ])
+    y.domain([0, yExtent[1] ])
+  
+
+    xAxis = d3.svg.axis().scale(x).orient("bottom");
+    yAxis = d3.svg.axis().scale(y).orient("right");
+    
+    svg.selectAll(".axis-x").call(xAxis);
+    svg.selectAll(".axis-y").call(yAxis);
+}
+
+function updateplot(datafile) {
+    d3.json(datafile, function(e, d) {
+        if(e) {
+            return console.warn(e);
+        }
+
+        update(d, true);
+    });
+}
+
+//This is identical to setting the onLoad attribute of the body tag
+window.onload = onstart();
+    </script>
+</body>
+</html>
